@@ -20,7 +20,7 @@ public class InformacoesUsuarioTest {
     public void setUp(){
 
         //Abrindo Navegador
-        System.setProperty("webdriver.chrome.driver","C:\\auto\\chromedriver.exe");
+        System.setProperty("chrome.driver","chromedriver.exe");
         navegador = new ChromeDriver();
         navegador.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
@@ -81,7 +81,7 @@ public class InformacoesUsuarioTest {
 
     public void tearDown(){
 //Fechar o navegador
-    //navegador.quit();
+    navegador.quit();
     //assertEquals(1,1);
 
 }
