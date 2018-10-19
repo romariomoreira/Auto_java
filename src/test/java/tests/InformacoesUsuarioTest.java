@@ -21,7 +21,7 @@ public class InformacoesUsuarioTest {
 
         //Abrindo Navegador
         //Abaixo como é usado para passar o endereço da pasta onde está o navegador, caso esteja em pasta diferente do projeto.
-        System.setProperty("webdriver.chrome.driver","C:\\auto\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","C:\\auto\\chromedriver.exe");
 
         //Abaixo como é usado para passar o navegador quando estiver na mesma pasta do Projeto.
         System.setProperty("chrome.driver","chromedriver.exe");
