@@ -20,12 +20,16 @@ public class InformacoesUsuarioTest {
     public void setUp(){
 
         //Abrindo Navegador
-        System.setProperty("chrome.driver","chromedriver.exe");
-        navegador = new ChromeDriver();
-        navegador.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //Abaixo como é usado para passar o endereço da pasta onde está o navegador, caso esteja em pasta diferente do projeto.
+        System.setProperty("webdriver.chrome.driver","C:\\auto\\chromedriver.exe");
 
-        //Navegando para site task
-        navegador.get("http://www.juliodelima.com.br/taskit");
+        //Abaixo como é usado para passar o navegador quando estiver na mesma pasta do Projeto.
+        System.setProperty("chrome.driver","chromedriver.exe");
+            navegador = new ChromeDriver();
+            navegador.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+            //Navegando para site task
+            navegador.get("http://www.juliodelima.com.br/taskit");
 
 
     }
@@ -81,7 +85,7 @@ public class InformacoesUsuarioTest {
 
     public void tearDown(){
 //Fechar o navegador
-    navegador.quit();
+    //navegador.quit();
     //assertEquals(1,1);
 
 }
