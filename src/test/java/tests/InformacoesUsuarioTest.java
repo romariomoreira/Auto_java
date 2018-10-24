@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,25 +56,33 @@ public class InformacoesUsuarioTest {
         //Clicar no link com texto "SIGN IN"
         formularioSingnInBox.findElement(By.linkText("SIGN IN")).click();
 
+
         //Clicar em um link que possui a class "me"
         navegador.findElement(By.className("me")).click();
+
         //Clicar em um link que possui o texto "MORE DATA ABOUT YOU"
         navegador.findElement(By.linkText("MORE DATA ABOUT YOU")).click();
+
         //Clicar no botão atráves do seu xpath //button[@data-target="addmoredata"]
         navegador.findElement(By.xpath("//button[@data-target=\'addmoredata\']")).click();
 
         // Identificar a popup onde está o fomulário de id addmoredata
-        WebElement formularioaddmoredata = navegador.findElement(By.id("addmoredata"));
+        WebElement popaddmoredata = navegador.findElement(By.id("addmoredata"));
 
         //No combo de name "type" escolhe a opção "Phone"
-      //  formularioaddmoredata.findElement(By.name("type").findElement(By.cssSelector("Phone"))
+       WebElement CampoType =  popaddmoredata.findElement(By.name("type"));
+       new Select(CampoType).selectByVisibleText("Phone");
 
         // No campo de name "Contact" digitar "+5511933293399"
+        popaddmoredata.findElement(By.name("contact")).sendKeys("+5511933293399");
 
-        //clicar no link de text "SAVE" que esrá na popup
+        //clicar no link de text "SAVE" que está na popup
+        popaddmoredata.findElement(By.linkText("SAVE")).click();
 
-    // Na mensagem de id "toast-container" validar que o texto é "Your contact has been added!"
-
+        // Na mensagem de id "toast-container" validar que o texto é "Your contact has been added!"
+        WebElement mensagemPop = navegador.findElement(By.id("toast-container"));
+        String mensagem = mensagemPop.getText();
+        assertEquals("Your contact has been added!",mensagem);
 
 
 
@@ -85,7 +94,8 @@ public class InformacoesUsuarioTest {
 
     public void tearDown(){
 //Fechar o navegador
-    //navegador.quit();
+
+    navegador.quit();
     //assertEquals(1,1);
 
 }
