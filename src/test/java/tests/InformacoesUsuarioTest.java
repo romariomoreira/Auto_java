@@ -125,8 +125,8 @@ import java.util.concurrent.TimeUnit;
     @After
     public void tearDown()
       {
-       //Fechar o navegador
-        navegador.quit();
+           //Fechar o navegador
+            navegador.quit();
 
      }      
     
