@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.*;
 
 
+import Suporte.Generetion;
+import Suporte.ScreenShot;
 import com.sun.org.apache.bcel.internal.ExceptionConstants;
 import org.junit.After;
 import org.junit.Before;
@@ -95,7 +97,7 @@ import java.util.concurrent.TimeUnit;
 
 
         @Test
-        public void removerUmContatoDoUsuario() 
+        public void removerUmContatoDoUsuario()
     
          {
               // Clicar no elemento pelo seu Xpath //span[text()="+5511933293399"]/following-sibling::a
@@ -108,6 +110,8 @@ import java.util.concurrent.TimeUnit;
                   WebElement mensagemPop = navegador.findElement(By.id("toast-container"));
                   String mensagem = mensagemPop.getText();
                   assertEquals("Rest in peace, dear phone!", mensagem);
+
+             ScreenShot.tirar(navegador, "C://auto//"+ Generetion.datahoraarquivo()+ ".png");
                   
               //Agaurdar até 10 segundos para a janela desapareça
                   WebDriverWait aguardar = new WebDriverWait(navegador, 10)  ;
