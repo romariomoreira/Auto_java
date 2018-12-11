@@ -6,9 +6,13 @@ import static org.junit.Assert.*;
 import Suporte.Generetion;
 import Suporte.ScreenShot;
 import com.sun.org.apache.bcel.internal.ExceptionConstants;
+import org.easetech.easytest.annotation.DataLoader;
+import org.easetech.easytest.annotation.Param;
+import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +23,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
+
+
+@RunWith(DataDrivenTestRunner.class)
+@DataLoader(filePaths = "Informar.csv")
   public class InformacoesUsuarioTest
 
     {
@@ -67,9 +75,9 @@ import java.util.concurrent.TimeUnit;
 
             }
 
-      //@Test
-        public void adicionarInformacaodoUsuario() 
-      
+      @Test
+        public void adicionarInformacaodoUsuario(@Param(name = "tipo") String tipo, @Param(name = "contato") String contato, @Param(name = "mensagem") String mensagemesperada)
+
            {
 
                 //Clicar no botão atráves do seu xpath //button[@data-target="addmoredata"]
@@ -80,10 +88,10 @@ import java.util.concurrent.TimeUnit;
 
                 //No combo de name "type" escolhe a opção "Phone"
                 WebElement CampoType = popaddmoredata.findElement(By.name("type"));
-                new Select(CampoType).selectByVisibleText("Phone");
+                new Select(CampoType).selectByVisibleText(tipo);
 
                 // No campo de name "Contact" digitar "+5511933293399"
-                popaddmoredata.findElement(By.name("contact")).sendKeys("+5511933293399");
+                popaddmoredata.findElement(By.name("contact")).sendKeys(contato);
 
                 //clicar no link de text "SAVE" que está na popup
                 popaddmoredata.findElement(By.linkText("SAVE")).click();
@@ -91,7 +99,7 @@ import java.util.concurrent.TimeUnit;
                 // Na mensagem de id "toast-container" validar que o texto é "Your contact has been added!"
                 WebElement mensagemPop = navegador.findElement(By.id("toast-container"));
                 String mensagem = mensagemPop.getText();
-                assertEquals("Your contact has been added!", mensagem);       
+                assertEquals(mensagemesperada, mensagem);
         
           }
 
