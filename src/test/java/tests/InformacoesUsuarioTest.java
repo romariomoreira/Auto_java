@@ -26,14 +26,15 @@ import java.util.concurrent.TimeUnit;
 
 
 @RunWith(DataDrivenTestRunner.class)
-@DataLoader(filePaths = "Informar.csv")
+@DataLoader(filePaths = "InformacoesTest.csv")
   public class InformacoesUsuarioTest
 
     {
           private WebDriver navegador;
 
           @Before
-          public void setUp() 
+          public void setUp()
+
     
             {
     
